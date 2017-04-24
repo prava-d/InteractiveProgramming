@@ -1,4 +1,5 @@
 """
+Author: Prava Dhulipalla
 Display candidate names on a circle and show the candidate's
 details in a popup when mouse is on the candidate's name
 """
