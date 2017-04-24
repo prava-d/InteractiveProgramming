@@ -8,3 +8,5 @@ Then, download either the pickle files or the twitter_textmining.py file (and ru
 Download phrase_extractor.py and main.py.
 
 Run main.py.
+
+Link to write-up: [to come]
