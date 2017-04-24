@@ -1,68 +1,15 @@
 """
- Author: Prava Dhulipalla
- Retrive sentences from the text that have the candidate name(s) passed
-
+Retrive sentences from the text that have the candidate name(s) passed
 """
 
 import nltk
 
 # list of words for scoring positive/negative
-# NOTE: need to add more words
-pos_words = [
-    'good',
-    'best',
-    'great',
-    'greatest'
-    'excellent',
-    'positive',
-    'tremendous',
-    'marvelous',
-    'amazing',
-    'wonderful',
-    'fabulous',
-    'truthful',
-    'decent',
-    'improve',
-    'intelligent',
-    'smart',
-    'honest'
-    'nice',
-    'fine',
-    'love',
-    'loves'
-    ]
+with open ('positive_words.txt', 'r') as f:
+	pos_words = f.read().split()
 
-neg_words = [
-    'bad',
-    'worse',
-    'mean',
-    'crooked',
-    'liar',
-    'fraud',
-    'stupid',
-    'nasty',
-    'ruin',
-    'destroy',
-    'racist',
-    'racists',
-    'bigot',
-    'bigots',
-    'extremist',
-    'extremists',
-    'terrorist',
-    'terrorists',
-    'negative',
-    'fringe',
-    'hate',
-    'hates',
-    'hatred',
-    'dishonest',
-    'bombastic',
-    'sad',
-    'sick',
-    'deplorable',
-    'deplorables'
-    ]
+with open ('negative_words.txt', 'r') as f:
+	neg_words = f.read().split()
 
 
 class Quote:
@@ -71,7 +18,7 @@ class Quote:
     """
     def __init__(self):
         self.text = ''
-        self.tone = ''
+        self.tone = 0
 
     def __str__(self):
         return self.text + ' (' + self.tone + ')'
@@ -111,11 +58,9 @@ def get_quote(text):
                 score -= 1          # negative
 
     if score > 0:
-        quote.tone = 'positive'
+        quote.tone = 1
     elif score < 0:
-        quote.tone = 'negative'
-    else:
-        quote.tone = 'neutral'
+        quote.tone = -1
 
     return quote
 
@@ -130,17 +75,8 @@ def get_sentences(text, names):
     sentences1 = nltk.sent_tokenize(text)
     sentences2 = []
     for sentence in sentences1:
-        if any(name in sentence for name in names):
+        if any(name in sentence.split() for name in names):
             sentences2.append(sentence)
 
     return sentences2
 
-
-
-
-if __name__ == "__main__":
-    names = ['William', 'Derksen', 'Will']
-    text = "I told Will to shut up. Will got hacked. Will doesn't know how to listen to directions. Kill Will."
-    s = get_sentences(text, names)
-    for x in s:
-        print(get_quote(x))

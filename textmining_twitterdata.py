@@ -1,7 +1,3 @@
-"""
-Author: Minju
-"""
-
 import twitter
 import pickle
 from pathlib import Path
