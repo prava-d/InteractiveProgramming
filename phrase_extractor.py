@@ -1,4 +1,5 @@
 """
+ Author: Prava Dhulipalla
  Retrive sentences from the text that have the candidate name(s) passed
 
 """
